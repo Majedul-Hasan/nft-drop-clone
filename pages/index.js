@@ -1,9 +1,18 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import {useAddress, useMetamask, useDisconnect} from '@thirdweb-dev/react'
 
 export default function Home() {
+  const address = useAddress()
+  const connectWithMetamask = useMetamask()
+  const disconnect = useDisconnect()
+
+
+
   return (
+    <>
+    {address? (
+    
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
@@ -64,6 +73,14 @@ export default function Home() {
           </span>
         </a>
       </footer>
-    </div>
+    </div>): (
+      <div>
+      <button>Login</button>
+      
+      </div>
+    )
+    
+     }
+    </>
   )
 }
